@@ -83,7 +83,7 @@ public class AuthService : IAuthService
         _logger.LogInformation("Iniciando registro de novo sensor com serial {Serial}", request.Serial);
         var farmer = await _farmerRepository.GetByIdAsync(farmerId);
 
-        if (farmer != null)
+        if (farmer == null)
         {
             _logger.LogWarning("Tentativa de registro de sensor com fazendeiro não existente: {userId}", farmerId);
             throw new UnauthorizedException("Fazendeiro não cadastrado na base de dados");

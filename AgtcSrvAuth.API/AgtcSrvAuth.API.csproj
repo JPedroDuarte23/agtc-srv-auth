@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>6436af06-9916-455b-afe4-7568a0d8e2a1</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.301" />
+		<PackageReference Include="AspNet.DataProtection.Aws.S3" Version="3.3.0" />
+		<PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AgtcSrvAuth.Application\AgtcSrvAuth.Application.csproj" />
+    <ProjectReference Include="..\AgtcSrvAuth.Infrastructure\AgtcSrvAuth.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

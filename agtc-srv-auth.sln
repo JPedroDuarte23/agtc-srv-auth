@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgtcSrvAuth.Infrastructure"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgtcSrvAuth.Application", "AgtcSrvAuth.Application\AgtcSrvAuth.Application.csproj", "{01B342B7-50D2-4696-A7DA-2AEDF0E4405D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgtcSrvAuth.Test", "AgtcSrvAuth.Test\AgtcSrvAuth.Test.csproj", "{19B64586-960D-4249-A032-495448B8802D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{01B342B7-50D2-4696-A7DA-2AEDF0E4405D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01B342B7-50D2-4696-A7DA-2AEDF0E4405D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01B342B7-50D2-4696-A7DA-2AEDF0E4405D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19B64586-960D-4249-A032-495448B8802D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19B64586-960D-4249-A032-495448B8802D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19B64586-960D-4249-A032-495448B8802D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19B64586-960D-4249-A032-495448B8802D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -53,11 +53,7 @@ jobs:
 
       - name: Generate Sonar Coverage Report
         run: |
-          echo "Listing any coverage XML files for debugging"
-          find . -type f -name "coverage*.xml" -print || true
-          find . -type f -path "*/TestResults/*" -maxdepth 5 -print || true
-          # Use a broader glob to match coverage outputs under TestResults
-          reportgenerator -reports:**/TestResults/**/coverage*.xml -targetdir:coverage-report -reporttypes:SonarQube
+          reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage-report -reporttypes:SonarQube
 
       - name: End SonarCloud Analysis
         run: dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"

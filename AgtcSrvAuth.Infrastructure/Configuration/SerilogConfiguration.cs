@@ -1,7 +1,7 @@
 ﻿using Serilog;
 using System.Diagnostics.CodeAnalysis;
 
-namespace FiapSrvGames.Infrastructure.Configuration;
+namespace AgtcSrvAuth.Infrastructure.Configuration;
 
 [ExcludeFromCodeCoverage]
 public class SerilogConfiguration

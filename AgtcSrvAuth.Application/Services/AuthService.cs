@@ -101,8 +101,6 @@ public class AuthService : IAuthService
         {
             await _sensorRepository.CreateAsync(sensor);
 
-            _logger.LogInformation("Sensor {Serial} cadastrado com sucesso", request.Serial);
-
             return new TokenResponse(GenerateSensorJwt(sensor));
         }
         catch (Exception ex)

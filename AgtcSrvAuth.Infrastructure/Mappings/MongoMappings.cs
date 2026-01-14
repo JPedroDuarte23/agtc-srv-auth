@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using AgtcSrvAuth.Infrastructure.Mappings;
 
-namespace FiapSrvGames.Infrastructure.Mappings;
+namespace AgtcSrvAuth.Infrastructure.Mappings;
 
 [ExcludeFromCodeCoverage]
 public static class MongoMappings

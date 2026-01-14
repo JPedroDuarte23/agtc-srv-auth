@@ -44,7 +44,7 @@ if (!builder.Environment.IsDevelopment())
     {
         var s3DataProtectionConfig = new S3XmlRepositoryConfig(s3Bucket) { KeyPrefix = s3KeyPrefix };
         builder.Services.AddDataProtection()
-            .SetApplicationName("AgtcSrvAuth")
+            .SetApplicationName("AgroTech")
             .PersistKeysToAwsS3(s3DataProtectionConfig);
     }
 }

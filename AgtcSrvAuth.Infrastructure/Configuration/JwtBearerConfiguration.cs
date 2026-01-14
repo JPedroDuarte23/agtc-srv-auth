@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.Json;
 
-namespace FiapCloudGames.Infrastructure.Configuration;
+namespace AgtcSrvAuth.Infrastructure.Configuration;
 
 [ExcludeFromCodeCoverage]
 public static class JwtBearerConfiguration

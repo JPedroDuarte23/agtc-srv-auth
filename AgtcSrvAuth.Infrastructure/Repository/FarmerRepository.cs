@@ -3,7 +3,7 @@ using AgtcSrvAuth.Application.Interfaces;
 using AgtcSrvAuth.Domain.Models;
 using MongoDB.Driver;
 
-namespace FiapSrvGames.Infrastructure.Repository;
+namespace AgtcSrvAuth.Infrastructure.Repository;
 
 [ExcludeFromCodeCoverage]
 public class FarmerRepository : IFarmerRepository

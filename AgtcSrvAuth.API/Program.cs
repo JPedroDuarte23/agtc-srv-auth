@@ -1,19 +1,17 @@
 using System.Diagnostics.CodeAnalysis;
 using AgtcSrvAuth.Infrastructure.Middleware;
-using FiapSrvGames.Infrastructure.Configuration;
 using Serilog;
 using AspNetCore.DataProtection.Aws.S3;
 using Microsoft.AspNetCore.DataProtection;
-using FiapSrvGames.Infrastructure.Mappings;
 using MongoDB.Driver;
 using AgtcSrvAuth.Application.Interfaces;
-using FiapSrvGames.Infrastructure.Repository;
 using AgtcSrvAuth.Infrastructure.Repository;
-using AgtcSrvAuth.Application.Services;
-using FiapCloudGames.Infrastructure.Configuration;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using Prometheus;
+using AgtcSrvAuth.Infrastructure.Configuration;
+using AgtcSrvAuth.Application.Services;
+using AgtcSrvAuth.Infrastructure.Mappings;
 
 [assembly: ExcludeFromCodeCoverage]
 

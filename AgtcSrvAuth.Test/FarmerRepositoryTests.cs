@@ -1,5 +1,5 @@
 using AgtcSrvAuth.Domain.Models;
-using FiapSrvGames.Infrastructure.Repository;
+using AgtcSrvAuth.Infrastructure.Repository;
 using MongoDB.Driver;
 using Moq;
 using System.Collections.Generic;

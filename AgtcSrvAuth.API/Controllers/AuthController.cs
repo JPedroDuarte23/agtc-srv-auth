@@ -43,7 +43,7 @@ namespace AgtcSrvAuth.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Authenticate([FromBody] AuthenticateRequest request)
         {
-            var token = _service.AuthenticateAsync(request);
+            var token = await _service.AuthenticateAsync(request);
             return Ok(token);
         }
 

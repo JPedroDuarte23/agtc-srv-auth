@@ -22,7 +22,7 @@ public class SensorRepository : ISensorRepository
 
     private void CreateIndexes()
     {
-        var indexKeys = Builders<Sensor>.IndexKeys.Ascending(u => u.Id);
+        var indexKeys = Builders<Sensor>.IndexKeys.Ascending(u => u.Serial);
         var indexOptions = new CreateIndexOptions { Unique = true };
         var indexModel = new CreateIndexModel<Sensor>(indexKeys, indexOptions);
 

@@ -96,6 +96,7 @@ public class AuthService : IAuthService
             FieldId = request.FieldId,
             OwnerId = farmerId,
             SensorType = request.SensorType,
+            CreatedAt = DateTime.UtcNow
         };
         try
         {

@@ -84,7 +84,7 @@ namespace AgtcSrvAuth.Test
         public async Task RegisterFarmerAsync_ShouldReturnToken_WhenRegistrationIsSuccessful()
         {
             // Arrange
-            var request = new RegisterFarmerRequest("Test Farmer", "test@test.com", "password", "Farmer");
+            var request = new RegisterFarmerRequest("Test Farmer", "test@test.com", "password");
             _farmerRepositoryMock.Setup(r => r.GetByEmailAsync(request.Email)).ReturnsAsync((Farmer)null);
 
             // Act
@@ -100,7 +100,7 @@ namespace AgtcSrvAuth.Test
         public async Task RegisterFarmerAsync_ShouldThrowConflictException_WhenEmailAlreadyExists()
         {
             // Arrange
-            var request = new RegisterFarmerRequest("Test Farmer", "test@test.com", "password", "Farmer");
+            var request = new RegisterFarmerRequest("Test Farmer", "test@test.com", "password");
             var existingFarmer = new Farmer { Id = Guid.NewGuid(), Email = "test@test.com" };
             _farmerRepositoryMock.Setup(r => r.GetByEmailAsync(request.Email)).ReturnsAsync(existingFarmer);
 
@@ -112,7 +112,7 @@ namespace AgtcSrvAuth.Test
         public async Task RegisterFarmerAsync_ShouldThrowModifyDatabaseException_WhenRepositoryFails()
         {
             // Arrange
-            var request = new RegisterFarmerRequest("Test Farmer", "test@test.com", "password", "Farmer");
+            var request = new RegisterFarmerRequest("Test Farmer", "test@test.com", "password");
             _farmerRepositoryMock.Setup(r => r.GetByEmailAsync(request.Email)).ReturnsAsync((Farmer)null);
             _farmerRepositoryMock.Setup(r => r.CreateAsync(It.IsAny<Farmer>())).ThrowsAsync(new Exception("Database error"));
 
@@ -125,7 +125,7 @@ namespace AgtcSrvAuth.Test
         {
             // Arrange
             var farmerId = Guid.NewGuid();
-            var request = new RegisterSensorRequest(AgtcSrvAuth.Domain.Enums.SensorType.Umidade, "12345", Guid.NewGuid(), DateTime.UtcNow);
+            var request = new RegisterSensorRequest(AgtcSrvAuth.Domain.Enums.SensorType.Umidade, "12345", Guid.NewGuid());
             var farmer = new Farmer { Id = farmerId };
             _farmerRepositoryMock.Setup(r => r.GetByIdAsync(farmerId)).ReturnsAsync(farmer);
 
@@ -143,7 +143,7 @@ namespace AgtcSrvAuth.Test
         {
             // Arrange
             var farmerId = Guid.NewGuid();
-            var request = new RegisterSensorRequest(AgtcSrvAuth.Domain.Enums.SensorType.Umidade, "12345", Guid.NewGuid(), DateTime.UtcNow);
+            var request = new RegisterSensorRequest(AgtcSrvAuth.Domain.Enums.SensorType.Umidade, "12345", Guid.NewGuid());
             _farmerRepositoryMock.Setup(r => r.GetByIdAsync(farmerId)).ReturnsAsync((Farmer)null);
 
             // Act & Assert
@@ -155,7 +155,7 @@ namespace AgtcSrvAuth.Test
         {
             // Arrange
             var farmerId = Guid.NewGuid();
-            var request = new RegisterSensorRequest(AgtcSrvAuth.Domain.Enums.SensorType.Umidade, "12345", Guid.NewGuid(), DateTime.UtcNow);
+            var request = new RegisterSensorRequest(AgtcSrvAuth.Domain.Enums.SensorType.Umidade, "12345", Guid.NewGuid());
             var farmer = new Farmer { Id = farmerId };
             _farmerRepositoryMock.Setup(r => r.GetByIdAsync(farmerId)).ReturnsAsync(farmer);
             _sensorRepositoryMock.Setup(r => r.CreateAsync(It.IsAny<Sensor>())).ThrowsAsync(new Exception("Database error"));

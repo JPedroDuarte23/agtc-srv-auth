@@ -36,7 +36,7 @@ namespace AgtcSrvAuth.Test
         public async Task RegisterFarmer_ShouldReturnOk()
         {
             // Arrange
-            var request = new RegisterFarmerRequest("Test Farmer", "test@test.com", "password", "Farmer");
+            var request = new RegisterFarmerRequest("Test Farmer", "test@test.com", "password");
             var tokenResponse = new TokenResponse("token");
             _authServiceMock.Setup(s => s.RegisterFarmerAsync(request)).ReturnsAsync(tokenResponse);
 
@@ -52,7 +52,7 @@ namespace AgtcSrvAuth.Test
         public async Task RegisterSensor_ShouldReturnOk()
         {
             // Arrange
-            var request = new RegisterSensorRequest(AgtcSrvAuth.Domain.Enums.SensorType.Umidade, "serial-123", Guid.NewGuid(), DateTime.UtcNow);
+            var request = new RegisterSensorRequest(AgtcSrvAuth.Domain.Enums.SensorType.Umidade, "serial-123", Guid.NewGuid());
             var tokenResponse = new TokenResponse("token");
             var farmerId = Guid.NewGuid();
             var user = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
@@ -88,7 +88,7 @@ namespace AgtcSrvAuth.Test
 
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
-            Assert.Equal(tokenResponse, await (Task<TokenResponse>)okResult.Value);
+            Assert.Equal(tokenResponse, okResult.Value);
         }
     }
 }

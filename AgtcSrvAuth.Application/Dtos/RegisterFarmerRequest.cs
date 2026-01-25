@@ -17,4 +17,9 @@ public class RegisterFarmerRequest {
     ErrorMessage = "A senha deve conter ao menos uma letra, um número e um caractere especial.")]
     public string Password { get; set; }
 
+    public RegisterFarmerRequest(string name, string email, string password) {
+        Name = name;
+        Email = email;  
+        Password = password;
+    }
 }

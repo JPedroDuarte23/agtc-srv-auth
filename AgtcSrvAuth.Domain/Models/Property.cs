@@ -10,11 +10,12 @@ namespace AgtcSrvAuth.Domain.Models;
 
 public class Property
 {
-    [BsonRepresentation(BsonType.String)]
+    [BsonGuidRepresentation(GuidRepresentation.Standard)]
     public Guid Id { get; set; }
     public string Name { get; set; }       
     public string Location { get; set; }   
     public double TotalArea { get; set; }
+    [BsonGuidRepresentation(GuidRepresentation.Standard)]
     public Guid OwnerId { get; set; }
     public List<Field> Fields { get; set; } = new();
 }

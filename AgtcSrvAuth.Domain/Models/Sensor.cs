@@ -11,12 +11,13 @@ namespace AgtcSrvAuth.Domain.Models;
 
 public class Sensor
 {
-    [BsonRepresentation(BsonType.String)]
+    [BsonId]
+    [BsonGuidRepresentation(GuidRepresentation.Standard)]
     public Guid Id { get; set; } = Guid.NewGuid();
     public string Serial { get; set; }
-    [BsonRepresentation(BsonType.String)]
-    public Guid FieldId { get; set; }
-    [BsonRepresentation(BsonType.String)]
+    [BsonGuidRepresentation(GuidRepresentation.Standard)]
+    public Guid FieldId { get; set; }   
+    [BsonGuidRepresentation(GuidRepresentation.Standard)]
     public Guid OwnerId { get; set; }
     public SensorType SensorType { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

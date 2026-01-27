@@ -10,7 +10,7 @@ namespace AgtcSrvAuth.Domain.Models;
 
 public class Field
 {
-    [BsonRepresentation(BsonType.String)]
+    [BsonGuidRepresentation(GuidRepresentation.Standard)]
     public Guid FieldId { get; set; }
     public string Name { get; set; }
     public string CropType { get; set; }

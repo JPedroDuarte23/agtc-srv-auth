@@ -5,7 +5,8 @@ using MongoDB.Bson.Serialization.Attributes;
 
 public class Farmer
 {
-    [BsonRepresentation(BsonType.String)]
+    [BsonId]
+    [BsonGuidRepresentation(GuidRepresentation.Standard)]
     public Guid Id { get; set; }
     public string Name { get; set; }
     public string Email { get; set; }

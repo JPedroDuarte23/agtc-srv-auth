@@ -10,6 +10,7 @@ namespace AgtcSrvAuth.Domain.Models;
 
 public class Property
 {
+    [BsonRepresentation(BsonType.String)]
     public Guid Id { get; set; }
     public string Name { get; set; }       
     public string Location { get; set; }   

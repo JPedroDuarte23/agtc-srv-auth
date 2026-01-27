@@ -17,13 +17,15 @@ public class AuthService : IAuthService
 
     private readonly IFarmerRepository _farmerRepository;
     private readonly ISensorRepository _sensorRepository;
+    private readonly IPropertyRepository _propertyRepository;  
     private readonly IConfiguration _config;
     private readonly ILogger<AuthService> _logger;
     private readonly string _jwtSigningKey;
 
-    public AuthService(IFarmerRepository farmerRepository, IConfiguration config, ILogger<AuthService> logger, string jwtSigningKey, ISensorRepository sensorRepository)
+    public AuthService(IFarmerRepository farmerRepository, IPropertyRepository propertyRepository, IConfiguration config, ILogger<AuthService> logger, string jwtSigningKey, ISensorRepository sensorRepository)
     {
         _farmerRepository = farmerRepository;
+        _propertyRepository = propertyRepository;
         _config = config;
         _logger = logger;
         _jwtSigningKey = jwtSigningKey;
@@ -89,6 +91,15 @@ public class AuthService : IAuthService
             throw new UnauthorizedException("Fazendeiro não cadastrado na base de dados");
         }
 
+        var property = await _propertyRepository.GetPropertyByFieldAndOwnerAsync(request.FieldId, farmerId);
+
+        if(property == null) {
+            _logger.LogWarning("Tentativa de registro de sensor em talhão não existente: {FieldId}", request.FieldId);
+            throw new NotFoundException("Talhão não cadastrado na base de dados");
+        }
+
+        var field = GetFieldFromProperty(property, request.FieldId);
+
         var sensor = new Sensor
         {
             Id = Guid.NewGuid(),
@@ -102,7 +113,7 @@ public class AuthService : IAuthService
         {
             await _sensorRepository.CreateAsync(sensor);
 
-            return new TokenResponse(GenerateSensorJwt(sensor));
+            return new TokenResponse(GenerateSensorJwt(sensor, field, property, farmer.Name));
         }
         catch (Exception ex)
         {
@@ -136,7 +147,7 @@ private string GenerateUserJwt(Farmer farmer)
         return handler.WriteToken(token);
     }
 
-    private string GenerateSensorJwt(Sensor sensor)
+    private string GenerateSensorJwt(Sensor sensor, Field field, Property property, string farmerName)
     {
         var keyBytes = Convert.FromBase64String(_jwtSigningKey);
 
@@ -147,7 +158,10 @@ private string GenerateUserJwt(Farmer farmer)
             new Claim(ClaimTypes.Name, sensor.Id.ToString()),
             new Claim("FieldId", sensor.FieldId.ToString()),
             new Claim(ClaimTypes.Role, TokenRole.Sensor.ToString()),
-            new Claim("SensorType", sensor.SensorType.ToString())
+            new Claim("SensorType", sensor.SensorType.ToString()),
+            new Claim("FarmerName", farmerName),
+            new Claim("FieldName", field.Name),
+            new Claim("PropertyName", property.Name)
         }),
             Expires = DateTime.UtcNow.AddYears(10),
             SigningCredentials = new SigningCredentials(
@@ -161,5 +175,17 @@ private string GenerateUserJwt(Farmer farmer)
         var handler = new JwtSecurityTokenHandler();
         var token = handler.CreateToken(tokenDescriptor);
         return handler.WriteToken(token);
+    }
+
+    private Field GetFieldFromProperty(Property property, Guid fieldId)
+    {
+        var field = property.Fields.FirstOrDefault(f => f.FieldId == fieldId);
+
+        if (field == null)
+        {
+            throw new NotFoundException($"O Talhão com ID '{fieldId}' não foi encontrado");
+        }
+
+        return field;
     }
 }

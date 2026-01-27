@@ -53,9 +53,11 @@ MongoMappings.ConfigureMappings();
 
 builder.Services.AddScoped<IFarmerRepository, FarmerRepository>();
 builder.Services.AddScoped<ISensorRepository, SensorRepository>();
+builder.Services.AddScoped<IPropertyRepository, PropertyRepository>();
 builder.Services.AddScoped<IAuthService>(sp =>
     new AuthService(
         sp.GetRequiredService<IFarmerRepository>(),
+        sp.GetRequiredService<IPropertyRepository>(),
         sp.GetRequiredService<IConfiguration>(),
         sp.GetRequiredService<ILogger<AuthService>>(),
         jwtSigningKey,
